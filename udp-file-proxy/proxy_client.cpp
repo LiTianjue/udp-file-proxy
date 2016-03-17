@@ -232,7 +232,13 @@ int ProxyClient::Del_App(string appname, int opt)
             // head
             if(per == tmp)
             {
-                applist = NULL;
+                //查找到的节点是头节点
+                if(tmp->next == NULL)   //只剩头节点
+                    applist = NULL;
+                else
+                {
+                    applist= tmp->next;
+                }
             }
             else
             {
