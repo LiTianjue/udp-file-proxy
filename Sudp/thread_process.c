@@ -42,9 +42,10 @@ static ECHO_INFO share_info;
 
 void* Recv_Finish(void *args)
 {
-    printf("#########################\n");
-    char *filename = (char *)args;
-
+    //printf("\n#########################\n");
+    char filename[256] = {0};
+    sprintf(filename,"%s",(char *)args);
+    //printf("Save File to :[%s]\n",filename);
 
     char src[256] = {0};
     char des[256] = {0};
@@ -59,7 +60,7 @@ void* Recv_Finish(void *args)
 
     if(share_info.move_file > 0)  //需要拷贝文件
     {
-        printf("需要拷贝移动文件.\n");
+        //printf("需要拷贝移动文件.\n");
         //printf("src:%s\n",src);
         //printf("save:%s\n",(char *)args);
 
@@ -78,10 +79,10 @@ void* Recv_Finish(void *args)
     }else
     {
         strcpy(des,filename);
-        printf("不需要拷贝移动文件.\n");
+        //printf("不需要拷贝移动文件.\n");
     }
 
-    printf("des:%s\n",des);
+    printf("Save File:%s\n",des);
     //udp_message;
     int sock = share_info.m_sock;
     char echo_msg[256] = {0};
@@ -95,7 +96,7 @@ void* Recv_Finish(void *args)
     MUTEX_UNLOCK(share_info.lock);
 
 
-    printf("#########################\n");
+    //printf("#########################\n");
 
 }
 

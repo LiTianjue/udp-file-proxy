@@ -14,7 +14,7 @@
 
 
 echo "Adding..."
-./register_app.py appTest1 192.168.1.110 8001 172.16.2.16 10001 /run/shm /root/file false
-./register_app.py appTest2 192.168.1.110 8002 172.16.2.16 10002 /run/shm /root/file true
+./register_app.py appTest1 0.0.0.0 8001 172.16.2.16 10001 /run/shm /root/file false
+./register_app.py appTest2 0.0.0.0 8002 172.16.2.16 10002 /run/shm /root/file true
 #./register_app.py appTest2
 #./register_app.py appTest3
