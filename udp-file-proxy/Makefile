@@ -14,7 +14,7 @@ all:*.o
 	@$(CC) -c $(SRC)  $(CFLAGS)
 
 install:
-	cp $(TARGET) ../release
+	cp $(TARGET) ../install/udp-file-proxy/bin
 
 clean:
 	rm -rf $(TARGET)

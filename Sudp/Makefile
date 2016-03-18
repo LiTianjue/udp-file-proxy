@@ -26,4 +26,4 @@ $(OBJ): $(SRC)
 clean:
 	rm -rf $(PRG) $(OBJ)
 install:
-	cp $(PRG) /usr/share/udp-file-proxy/bin
+	cp $(PRG) ../install/udp-file-proxy/bin
