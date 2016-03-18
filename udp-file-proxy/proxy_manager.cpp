@@ -104,7 +104,7 @@ void ListenManager::readSock(struct bufferevent *bev, void *)
 void ListenManager::sockEvent(struct bufferevent *bev, short events, void *)
 {
       //出错处理
-    printf("sock Event \n");
+    //printf("sock Event \n");
     if(events & BEV_EVENT_ERROR)
     {
         perror("Error form bufferevent");
