@@ -1,5 +1,7 @@
 #Qt
 *.pro.user
+udp-file-proxy/udp-file-proxy
+Sudp/Sudp
 
 
 # Compiled Object files
