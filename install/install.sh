@@ -1,11 +1,10 @@
 #!/bin/bash
 
 # 创建应用目录
-mkdir /usr/share/udp-file-proxy  2>>./install.log
-mkdir /usr/share/udp-file-proxy/bin 2>>./install.log
-mkdir /usr/share/udp-file-proxy/etc 2>>./install.log
-mkdir /usr/share/udp-file-proxy/log	2>>./install.log
-cp -r  ./udp-file-proxy  /usr/share/ 2>>./install.log
+killall Sudp 2>>/dev/null
+killall udp-file-proxy 2>>/dev/null
+
+cp -rf  ./udp-file-proxy/  /usr/share/ 
 
 if [[ $1 == "server" ]]
 then

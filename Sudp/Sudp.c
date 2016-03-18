@@ -433,11 +433,11 @@ static void check_param(int argc,char **argv)
     }
 
     Init_log();
-    liblog_level(1);
-
+    liblog_level(3);
+	/*
     if(1)
         liblog_level(1);
-
+	*/
     PRINTF(LEVEL_INFORM,"move file string %s\n",argv[7]);
     PRINTF(LEVEL_INFORM,"udp [%s:%d]\n",udp_ip,udp_port);
     PRINTF(LEVEL_INFORM,"msg [%s:%d]\n",message_ip,message_port);
