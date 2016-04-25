@@ -420,7 +420,8 @@ void *file_thread(void *arg)
         if(info->list_c.get_stat()==S_IDLE)
         {
             //printf("没有文件需要传输.\n");
-            sleep(1);
+            //sleep(1);
+			usleep(200);
             continue;
         }
         else if(info->list_c.get_stat() == S_BUSY)
@@ -431,7 +432,8 @@ void *file_thread(void *arg)
 
             if(data == NULL)
             {
-                sleep(1);
+                //sleep(1);
+				usleep(100);
                 continue;
             }
 
