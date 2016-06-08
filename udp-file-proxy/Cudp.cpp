@@ -391,6 +391,14 @@ static int Sendto(int fd, const void *ptr, size_t nbytes, int flags,
 
 void *file_thread(void *arg)
 {
+
+    //add for debug
+    static FILE *fp_out = NULL;
+    if(fp_out == NULL)
+        fp_out = fopen("/usr/share/udp-file-proxy/send_result.log","w+");
+
+
+
     APP_INFO *info = (APP_INFO*)arg;
     //准备socket和目标地址结构
     info->tid = pthread_self();
@@ -426,12 +434,13 @@ void *file_thread(void *arg)
         }
         else if(info->list_c.get_stat() == S_BUSY)
         {
-            printf("即将传输文件.\n");
+            //printf("即将传输文件.\n");
             SEND_DATA* data = info->list_c.get_next();
-            std::cout << "get filename :" << data->filename;
+            std::cout << "get filename :" << data->filename << std::endl;
 
             if(data == NULL)
             {
+                 Log::Error("Get empty Data");
                 //sleep(1);
 				usleep(100);
                 continue;
@@ -442,10 +451,11 @@ void *file_thread(void *arg)
 
             struct timeval start, end;
             float size;
+#if 1
             size = GetFileSize(file);
             if(size <=0)
             {
-                Log::Error("Can not access file %s:%s\n",file,strerror(errno));
+                 Log::Error("Can not access file %s:%s\n",file,strerror(errno));
                 delete data;
                 continue;
                 //文件错误
@@ -456,22 +466,30 @@ void *file_thread(void *arg)
             int ret = SendPack_ex(file,sock,(struct sockaddr *)&serveraddr,sizeof(serveraddr),pack_t);
             if(ret == 0)
             {
-                if(delect)
+                 if(delect)
                 {
-                    //delect file;
+                     //delect file;
                     if(unlink(file)<0){
                         printf("unlink error !\n");
+                    }
                 }
-            }
-            gettimeofday( &end, NULL );
-            float timeuse = 1000000 * ( end.tv_sec - start.tv_sec ) + end.tv_usec -start.tv_usec;
+                gettimeofday( &end, NULL );
+                float timeuse = 1000000 * ( end.tv_sec - start.tv_sec ) + end.tv_usec -start.tv_usec;
 
-            printf("文件传输完毕[%d] .\n",ret);
-            printf("用时 %.02f us,文件大小 %f K\n",timeuse,size/1000);
-            float speed = (size/1024/1024)/(timeuse/1000/1000);
-            printf("speed : %.02f M/s\n",speed);
-            delete data;
-    }
+                printf("文件传输完毕[%d] .\n",ret);
+                printf("用时 %.02f us,文件大小 %f K\n",timeuse,size/1000);
+                float speed = (size/1024/1024)/(timeuse/1000/1000);
+                printf("speed : %.02f M/s\n",speed);
+            }
+#endif
+            //add for debug
+            //sleep(3);
+            fprintf(fp_out,"%s  result:%d\n",file,ret);
+            fflush(fp_out);
+
+           delete data;
+
+
 
 
         }

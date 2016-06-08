@@ -153,6 +153,23 @@ int ProxyClient::RequestHandler(char *msg_ex)
 
         Log::Debug("add File return %d\n",ret);
 
+        //add for debug
+        {
+            static FILE *fp_in = NULL;
+            if(fp_in == NULL)
+             {
+                fp_in = fopen("/usr/share/udp-file-proxy/send.log","w+");
+
+			 }else
+			 {
+				 if(ret == 0)
+				 {
+					 fprintf(fp_in,"%s  result:%d\n",file_name.c_str(),ret);
+					 fflush(fp_in);
+				 }
+			 }
+        }
+
         //print_err_msg(ret);
 
         return ret;
