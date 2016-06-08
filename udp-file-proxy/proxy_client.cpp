@@ -132,7 +132,7 @@ int ProxyClient::RequestHandler(char *msg_ex)
         new_app->delect_file = helper.Msg_get_bool("delect_file");
         new_app->max_line = helper.Msg_get_num("max_file");
         new_app->pack_t = g_conf.CONF_get_number("pack_t");
-
+        new_app->list_c.max_count = new_app->max_line;
         ret = Add_App(new_app);
        // Log::Debug("Add app return %d\n",ret);
 

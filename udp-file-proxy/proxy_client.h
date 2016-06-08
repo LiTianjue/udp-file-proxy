@@ -100,12 +100,12 @@ private:
     SEND_DATA *in;
     SEND_DATA *out;
 
-    int max_count;
     int list_count;
     SEND_DATA *data;
 
 public:
     // 注意ABBA死锁
+    int max_count;
     void set_stat(int st);
     int get_stat();
     int append_file(string filename,bool delect);
