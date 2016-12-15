@@ -82,7 +82,7 @@ void* Recv_Finish(void *args)
         //printf("不需要拷贝移动文件.\n");
     }
 
-    printf("Save File:%s\n",des);
+    //printf("Save File:%s\n",des);
     //udp_message;
     int sock = share_info.m_sock;
     char echo_msg[256] = {0};
@@ -168,7 +168,7 @@ again:
 			n = msgrcv(mqid,buff,MAXMSG,0,0);
 			if(n < 0)
 			{
-				PRINTF(LEVEL_ERROR,"thread msgrcv error :%s\n",strerror(errno));
+				//PRINTF(LEVEL_ERROR,"thread msgrcv error :%s\n",strerror(errno));
 				//WriteSysLog(LOG_PATH,log);
 				goto err_end;
 				continue;
@@ -184,7 +184,7 @@ again:
 		{
 			if((pack_move == 2)&&(pack_saved !=0))
 			{
-				PRINTF(LEVEL_ERROR,"A file is incomplete because client stop transmite by accident\n");
+				//PRINTF(LEVEL_ERROR,"A file is incomplete because client stop transmite by accident\n");
 				// write log
 
 				pack_saved = 0;
@@ -254,7 +254,7 @@ again:
 		}
 		else if(pack_total == (pack_move -1))
 		{
-			PRINTF(LEVEL_ERROR,"## lost package ## File %s is incomplete\n",file_name);
+			//PRINTF(LEVEL_ERROR,"## lost package ## File %s is incomplete\n",file_name);
 
 			fclose(fp);
 
