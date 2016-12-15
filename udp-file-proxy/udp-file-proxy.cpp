@@ -89,6 +89,10 @@ int main(int argc,char **argv)
     else
         proxy_init(argv[1]);
 
+#ifdef DAEMON
+	daemon(0,0);
+	printf("deamon ok .\n");
+#endif
 
     string m_ip = g_conf.CONF_get_string("manager_ip");
     int m_port = g_conf.CONF_get_number("manager_port");

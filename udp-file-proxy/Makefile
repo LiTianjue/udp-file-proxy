@@ -3,6 +3,8 @@ CC = g++
 CFLAGS=-fpermissive
 LDFLAGS =-L./lib -Wl,-Bdynamic -lpthread -lrt -Wl,-Bstatic -levent -Wl,-Bdynamic
 
+CFLAGS+=-DDAEMON
+
 TARGET = udp-file-proxy
 
 SRC = *.cpp mhp_lib/*.cpp
